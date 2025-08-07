@@ -1,7 +1,7 @@
 import requests
 import json
 
-with open('config.json', 'r') as f:
+with open('data/config.json', 'r') as f:
     config = json.load(f)
 PRIVATE_TOKEN = config.get('PRIVATE_TOKEN')
 PROJECT_ID = config.get('PROJECT_ID')
