@@ -14,11 +14,20 @@ for event in activities:
     if date_obj < stop_at:
         break
     date = date_obj.strftime('%Y-%m-%d %H:%M')
-    action = event.get('action_name', 'did something')
     author = event.get('author', {}).get('name', 'Unknown')
+    action = event.get('action_name', 'did something')
     target_type = event.get('target_type', 'Unknown')
+    
+    # Build title from available info
     title = event.get('target_title') or event.get('note', {}).get('body', '')[:60].replace('\n', ' ').strip()
+    if not title:
+        title = event.get('push_data', {}).get('commit_title', '[No title]')
 
-    # Build one-line summary
-    summary = f"[{date}] {author} {action} on {target_type}: {title}"
+    # Avoid "on on" or "to on"
+    if action.endswith(" on") or action.endswith(" to"):
+        summary_action = f"{author} {action}"
+    else:
+        summary_action = f"{author} {action} on"
+
+    summary = f"[{date}] {summary_action} {target_type}: {title}"
     print(summary)
