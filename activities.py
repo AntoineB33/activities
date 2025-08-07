@@ -3,10 +3,16 @@ import json
 
 with open('data/config.json', 'r') as f:
     config = json.load(f)
+
+is_free = 0
+if is_free:
+    PROJECT_ID = config.get('PROJECT_ID_FREE')
+    OUTPUT_FILE = config.get('OUTPUT_FILE_FREE')
+else:
+    PROJECT_ID = config.get('PROJECT_ID_SMARTTV')
+    OUTPUT_FILE = config.get('OUTPUT_FILE_SMARTTV')
 PRIVATE_TOKEN = config.get('PRIVATE_TOKEN')
-PROJECT_ID = config.get('PROJECT_ID')
 YOUR_USERNAME = config.get('YOUR_USERNAME')
-OUTPUT_FILE = config.get('OUTPUT_FILE')
 
 headers = {
     'PRIVATE-TOKEN': PRIVATE_TOKEN
@@ -16,7 +22,7 @@ base_url = f'https://gitlab.com/api/v4/projects/{PROJECT_ID}/events'
 
 all_my_events = []
 page = 1
-per_page = 32
+per_page = 50
 empty_my_events_count = 0  # Track consecutive empty my_events
 
 while True:
@@ -37,8 +43,8 @@ while True:
 
     if not my_events:
         empty_my_events_count += 1
-        if empty_my_events_count >= 2:
-            print(f"No events for your username found in two consecutive pages. Stopping.")
+        if empty_my_events_count >= 4:
+            print(f"No events for your username found in four consecutive pages. Stopping.")
             break
     else:
         empty_my_events_count = 0
