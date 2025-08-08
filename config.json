@@ -1,0 +1,11 @@
+{
+    "PRIVATE_TOKEN": "glpat-MGDVOGtq-C9tOLNIbJmn5W86MQp1OmZyYWk4Cw.01.1202341ho",
+    "PROJECT_ID_FREE": 56619464,
+    "PROJECT_ID_SMARTTV": 55112086,
+    "YOUR_USERNAME": "abarbaultGitlab",
+    "OUTPUT_FILE_FREE": "data/my_activities_free.json",
+    "INPUT_FILE_FREE": "data/my_activities_free.json",
+    "OUTPUT_FILE_SMARTTV": "data/my_activities_smarttv.json",
+    "INPUT_FILE_SMARTTV": "data/my_activities_smarttv.json",
+    "STOP_AT_DATETIME": "2025-08-08 10:45"
+}
