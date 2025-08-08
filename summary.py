@@ -1,7 +1,8 @@
 import json
 from datetime import datetime
+from zoneinfo import ZoneInfo
 
-with open('data/config.json', 'r') as f:
+with open('config.json', 'r') as f:
     config = json.load(f)
 for is_free in [0, 1]:
     if is_free:
@@ -19,7 +20,9 @@ for is_free in [0, 1]:
 
     for event in activities:
         date_obj = datetime.strptime(event['created_at'], '%Y-%m-%dT%H:%M:%S.%fZ')
-        if date_obj < stop_at:
+        # Convert UTC to France hour (Europe/Paris)
+        date_obj = date_obj.replace(tzinfo=ZoneInfo("UTC")).astimezone(ZoneInfo("Europe/Paris"))
+        if date_obj < stop_at.replace(tzinfo=ZoneInfo("Europe/Paris")):
             break
         date = date_obj.strftime('%Y-%m-%d %H:%M')
         author = event.get('author', {}).get('name', 'Unknown')
