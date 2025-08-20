@@ -7,5 +7,5 @@
     "INPUT_FILE_FREE": "data/my_activities_free.json",
     "OUTPUT_FILE_SMARTTV": "data/my_activities_smarttv.json",
     "INPUT_FILE_SMARTTV": "data/my_activities_smarttv.json",
-    "STOP_AT_DATETIME": "2025-08-08 10:45"
+    "STOP_AT_DATETIME_FILE": "data/stop_at_date.txt"
 }

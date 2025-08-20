@@ -9,7 +9,8 @@ for is_free in [0, 1]:
         INPUT_FILE = config.get('INPUT_FILE_FREE')
     else:
         INPUT_FILE = config.get('INPUT_FILE_SMARTTV')
-    STOP_AT_DATETIME = config.get('STOP_AT_DATETIME')
+    with open(config.get('STOP_AT_DATETIME_FILE'), 'r', encoding='utf-8') as f:
+        STOP_AT_DATETIME = f.read().strip()
     stop_at = datetime.strptime(STOP_AT_DATETIME, '%Y-%m-%d %H:%M')
 
     # Load your activity data

@@ -5,7 +5,7 @@ import os
 with open('config.json', 'r') as f:
     config = json.load(f)
 
-for is_free in [1]:
+for is_free in [0]:
     if is_free:
         PROJECT_ID = config.get('PROJECT_ID_FREE')
         OUTPUT_FILE = config.get('OUTPUT_FILE_FREE')
